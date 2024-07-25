@@ -1,0 +1,53 @@
+<!DOCTYPE html>  
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <title>Menu</title> 
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+        <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div id = "body" class = "jumbotron text-center">
+            <div>
+                <a href = "{{ url_for('criaTurma')}}" class = "sqrMainPage">
+                    <div>
+                        <button id = "addBtn">Criar Turma</button>
+                    </div>
+                </a>
+
+                <form action = "{{ url_for('menu', turma = turmaAtualP)}}" method="post" enctype="multipart/form-data">
+                    <h2>
+                       <label for = "turmas">Escolha uma turma: </label>
+                        <select name = "fTurmas" id = "turmas">
+                            {%for turmaEscolhida in lTurmas%}
+                                <option value="{{turmaEscolhida}}" {% if turmaEscolhida == turmaAtualP %}selected{% endif %}>{{ turmaEscolhida }}</option>
+                            {% endfor %} 
+                        </select>
+                    
+                        <button id = "btnEnviar" class = "jumbotron text-center" type="submit">Enviar</button> 
+                    </h2>   
+                </form>
+            </div>
+            
+
+            <h1>Turma {{turmaAtualP}}<span id = "s1"></span></h1>
+            <div> 
+                <div>
+                    <a href = "/cadastramento.html" class = "sqrMainPage">                    
+                        <button id = "addBtn">Adicionar aluno</button>                        
+                    </a>
+                </div>
+                <div>
+                    <a href = "{{ url_for('criaAula')}}" class = "sqrMainPage">                        
+                        <button id = "addBtn">criar Aula</button>                        
+                    </a>
+                </div>   
+            </div>
+            
+            {% include("ver_lista.html") %}
+        </div>
+    </body>
+
+</html>

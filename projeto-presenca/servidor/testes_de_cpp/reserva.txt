@@ -1,0 +1,6 @@
+@app.route("/recebeEEnvia", methods = ["GET", "POST"])
+def recebeEEnvia():
+    if request.method == "POST":
+        arqJson = request.get_json()
+        presencas = arqJson["presencas"]
+        cadastros = arqJson["cadastros"]

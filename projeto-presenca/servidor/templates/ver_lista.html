@@ -1,0 +1,32 @@
+<!DOCTYPE html>  
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <title>Menu</title> 
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ver_lista.css') }}">
+    </head>
+
+    <body>
+        <div id = "body">
+            <h1>LISTA DE ALUNOS<span id = "s1"></span></h1>
+            <ul class = "student_list_unity">
+                {%for aluno in lAlunos%}
+                    <li classe = "um_elemento">
+                        <img class = "student_photo" src="{{ url_for('static', filename='uploads/' ~ aluno['foto']) }}" alt="">
+                        <div class = d_infos>
+                            <p class = "student_name">{{aluno["nome"]}}</p>
+                            <p class = "student_matricula">{{aluno["matricula"]}}</p>
+                            <p class = "student_curso">{{aluno["curso"]}}</p>
+                        </div>
+                        <a href = "/edita/{{aluno["matricula"]}}.html"><button id = "btnEdita">Edita</button></a>
+                        <a href = "/exclui/{{aluno["matricula"]}}.html"><button id = "btnExclui">Exclui</button></a>
+                        <a href = "/presenca/{{aluno["matricula"]}}.html"><button id = "btnPresenca">Presença</button></a>
+
+                    </li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </body>
+
+</html>
